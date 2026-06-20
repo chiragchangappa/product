@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+<title>Products</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    margin:40px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table,th,td{
+    border:1px solid black;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+}
+
+.btn{
+    padding:8px;
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<h2>Product List</h2>
+
+<br>
+
+<a th:href="@{/products/new}">
+    Add Product
+</a>
+
+&nbsp;&nbsp;
+
+<a th:href="@{/dashboard}">
+    Dashboard
+</a>
+
+<br><br>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr th:each="product : ${products}">
+
+        <td th:text="${product.id}"></td>
+
+        <td th:text="${product.name}"></td>
+
+        <td th:text="${product.price}"></td>
+
+        <td th:text="${product.quantity}"></td>
+
+        <td>
+
+            <a th:href="@{/products/edit/{id}(id=${product.id})}">
+                Edit
+            </a>
+
+            |
+
+            <a th:href="@{/products/delete/{id}(id=${product.id})}">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>
